@@ -48,3 +48,26 @@ func (d *DSU) Find(x interface{}) interface{} {
 
 	return node.parent.value
 }
+
+func (d *DSU) Union(x, y interface{}) bool {
+	if !d.Contains(x) || !d.Contains(y) {
+		return false
+	}
+
+	if d.Find(x) == d.Find(y) {
+		return false
+	}
+
+	nodex := d.nodes[d.Find(x)]
+	nodey := d.nodes[d.Find(y)]
+
+	if nodex.size > nodey.size {
+		nodey.parent = nodex
+		nodex.size += nodey.size
+	} else {
+		nodex.parent = nodey
+		nodey.size += nodex.size
+	}
+
+	return true
+}

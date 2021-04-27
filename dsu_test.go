@@ -64,3 +64,32 @@ func TestFind(t *testing.T) {
 		assertEqual(t, d.Find(4), 2)
 	})
 }
+
+func TestUnion(t *testing.T) {
+	t.Run("Union of non existing elements", func(t *testing.T) {
+		d := New()
+		d.Add(1)
+
+		assertEqual(t, d.Union(1, 2), false)
+		assertEqual(t, d.Union(2, 3), false)
+	})
+
+	t.Run("Union of existing elements", func(t *testing.T) {
+		d := New()
+		node1 := &node{value: 1, parent: nil, size: 1}
+		node2 := &node{value: 2, parent: nil, size: 2}
+		node3 := &node{value: 3, parent: node2, size: 1}
+
+		d.nodes[1] = node1
+		d.nodes[2] = node2
+		d.nodes[3] = node3
+
+		assertEqual(t, d.Union(2, 3), false)
+		assertEqual(t, d.Union(1, 3), true)
+		assertEqual(t, d.Union(1, 3), false)
+
+		assertEqual(t, d.nodes[1].size, 1)
+		assertEqual(t, d.nodes[3].size, 1)
+		assertEqual(t, d.nodes[2].size, 3)
+	})
+}
