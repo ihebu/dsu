@@ -79,17 +79,21 @@ func TestUnion(t *testing.T) {
 		node1 := &node{value: 1, parent: nil, size: 1}
 		node2 := &node{value: 2, parent: nil, size: 2}
 		node3 := &node{value: 3, parent: node2, size: 1}
+		node4 := &node{value: 4, parent: nil, size: 1}
 
 		d.nodes[1] = node1
 		d.nodes[2] = node2
 		d.nodes[3] = node3
+		d.nodes[4] = node4
 
 		assertEqual(t, d.Union(2, 3), false)
 		assertEqual(t, d.Union(1, 3), true)
 		assertEqual(t, d.Union(1, 3), false)
+		assertEqual(t, d.Union(3, 4), true)
 
 		assertEqual(t, d.nodes[1].size, 1)
 		assertEqual(t, d.nodes[3].size, 1)
-		assertEqual(t, d.nodes[2].size, 3)
+		assertEqual(t, d.nodes[2].size, 4)
+		assertEqual(t, d.nodes[4].size, 1)
 	})
 }
