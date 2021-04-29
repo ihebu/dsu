@@ -1,7 +1,7 @@
 # dsu 
 
 [![GoDoc](https://godoc.org/github.com/ihebu/dsu?status.svg)](https://godoc.org/github.com/ihebu/dsu)
-[![Go Report Card](https://goreportcard.com/badge/github.com/ihebu/dsu)](https://goreportcard.com/report/github.com/ihebu/set)
+[![Go Report Card](https://goreportcard.com/badge/github.com/ihebu/dsu)](https://goreportcard.com/report/github.com/ihebu/dsu)
 [![Build Status](https://travis-ci.com/ihebu/dsu.svg?branch=main)](https://travis-ci.com/ihebu/dsu)
 [![codecov](https://codecov.io/gh/ihebu/dsu/branch/main/graph/badge.svg)](https://codecov.io/gh/ihebu/dsu)
 
