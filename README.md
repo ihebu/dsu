@@ -3,7 +3,7 @@
 [![GoDoc](https://godoc.org/github.com/ihebu/dsu?status.svg)](https://godoc.org/github.com/ihebu/dsu)
 [![Go Report Card](https://goreportcard.com/badge/github.com/ihebu/dsu)](https://goreportcard.com/report/github.com/ihebu/set)
 [![Build Status](https://travis-ci.com/ihebu/dsu.svg?branch=main)](https://travis-ci.com/ihebu/dsu)
-[![codecov](https://codecov.io/gh/ihebu/dsu/branch/master/graph/badge.svg)](https://codecov.io/gh/ihebu/dsu)
+[![codecov](https://codecov.io/gh/ihebu/dsu/branch/main/graph/badge.svg)](https://codecov.io/gh/ihebu/dsu)
 
 Implementation of the Disjoint-Set data structure.
 The Disjoint-Set, Also called a Union-Find or Merge-Find set, is a data structure that stores a collection of disjoint (non-overlapping) sets. Equivalently, it stores a partition of a set into disjoint subsets. It provides operations for adding new sets,
