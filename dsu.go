@@ -37,6 +37,9 @@ func (d *DSU) Contains(x interface{}) bool {
 }
 
 // Add takes an element as a parameter and inserts it in the disjoint set.
+// If the element already exists in the set, then nothing is done,
+// and the return is false
+// otherwise returns true
 func (d *DSU) Add(x interface{}) bool {
 	if d.Contains(x) {
 		return false

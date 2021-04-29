@@ -14,3 +14,44 @@ merging sets (replacing them by their union), and finding a representative membe
 ```bash
 go get github.com/ihebu/dsu
 ```
+
+## Documentation 
+
+You can check the code documentation [here](https://godoc.org/github.com/ihebu/dsu)
+
+## Usage Example
+
+```go
+
+// Create a new disjoint-set
+d := dsu.New()
+
+// Add the elements 1, 2, 3 to the set
+d.Add(1)
+d.Add(2)
+d.Add(3)
+
+// The set is now {1}, {2}, {3}
+
+// Unite the sets {1}, {2} 
+d.Union(1, 2)
+
+// The set is now {1, 2}, {3}
+
+// Find the representative element of each set
+d.Find(1) // returns 2
+d.Find(2) // returns 2
+d.Find(3) // returns 3
+
+// Check the existence of an element in the set
+d.Contains(2) // returns true
+d.Contains(54) // returns false
+
+// Note : you can add elements of different type in the set
+// Example
+
+d.Add("hello")
+d.Add(34.5)
+
+d.Union("hello", 34.5)
+```
