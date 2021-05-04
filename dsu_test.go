@@ -1,6 +1,7 @@
 package dsu
 
 import (
+	"math/rand"
 	"testing"
 )
 
@@ -96,4 +97,20 @@ func TestUnion(t *testing.T) {
 		assertEqual(t, d.nodes[2].size, 4)
 		assertEqual(t, d.nodes[4].size, 1)
 	})
+}
+
+var result bool
+
+func BenchmarkContains(b *testing.B) {
+	rand.Seed(42)
+	d := New()
+	for i := 0; i < 100000; i++ {
+		d.Add(rand.Intn(100000))
+	}
+	var r bool
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		r = d.Contains(rand.Intn(100000))
+	}
+	result = r
 }
