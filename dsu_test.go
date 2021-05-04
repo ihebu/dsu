@@ -126,6 +126,22 @@ func BenchmarkAdd(b *testing.B) {
 	result = r
 }
 
+func BenchmarkUnion(b *testing.B) {
+	rand.Seed(42)
+	d := New()
+	for i := 0; i < 100000; i++ {
+		d.Add(i)
+	}
+	var r bool
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		x := rand.Intn(100000)
+		y := rand.Intn(100000)
+		r = d.Union(x, y)
+	}
+	result = r
+}
+
 var result2 interface{}
 
 func BenchmarkFind(b *testing.B) {
