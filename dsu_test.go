@@ -114,3 +114,11 @@ func BenchmarkContains(b *testing.B) {
 	}
 	result = r
 }
+
+func BenchmarkAdd(b *testing.B) {
+	rand.Seed(42)
+	d := New()
+	for i := 0; i < b.N; i++ {
+		d.Add(rand.Intn(100000))
+	}
+}
