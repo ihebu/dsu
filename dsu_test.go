@@ -126,11 +126,23 @@ func BenchmarkAdd(b *testing.B) {
 	result = r
 }
 
-/*
+var result2 interface{}
+
 func BenchmarkFind(b *testing.B) {
-	// create a dsu
-	// add elements to it
-	// join some elements
-	// then run benchmark
+	rand.Seed(42)
+	d := New()
+	for i := 0; i < 100000; i++ {
+		d.Add(i)
+	}
+	for i := 0; i < 1000; i++ {
+		x := rand.Intn(100000)
+		y := rand.Intn(100000)
+		d.Union(x, y)
+	}
+	var r interface{}
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		r = d.Find(rand.Intn(100000))
+	}
+	result2 = r
 }
-*/
