@@ -118,7 +118,19 @@ func BenchmarkContains(b *testing.B) {
 func BenchmarkAdd(b *testing.B) {
 	rand.Seed(42)
 	d := New()
+	var r bool
+	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
-		d.Add(rand.Intn(100000))
+		r = d.Add(rand.Intn(100000))
 	}
+	result = r
 }
+
+/*
+func BenchmarkFind(b *testing.B) {
+	// create a dsu
+	// add elements to it
+	// join some elements
+	// then run benchmark
+}
+*/
