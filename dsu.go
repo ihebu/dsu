@@ -36,16 +36,11 @@ func (d *DSU) Contains(x interface{}) bool {
 }
 
 // Add adds a new element. This element is placed into a new set containing only the new element, and the new set is added to the data structure.
-// If the element already exists in the data structure, then nothing is done,
-// and the return is false
-// otherwise returns true
-func (d *DSU) Add(x interface{}) bool {
-	if d.Contains(x) {
-		return false
+// If the element already exists in the data structure, then nothing is done.
+func (d *DSU) Add(x interface{}) {
+	if !d.Contains(x) {
+		d.nodes[x] = &node{value: x, parent: nil, size: 1}
 	}
-
-	d.nodes[x] = &node{value: x, parent: nil, size: 1}
-	return true
 }
 
 // Find returns the root element that represents the set to which x belongs to.

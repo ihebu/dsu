@@ -24,21 +24,6 @@ func TestContains(t *testing.T) {
 	assertEqual(t, d.Contains(0), false)
 }
 
-func TestAdd(t *testing.T) {
-
-	t.Run("Adding a new element to the set", func(t *testing.T) {
-		d := New()
-		assertEqual(t, d.Add(1), true)
-	})
-
-	t.Run("Adding an existing element to the set", func(t *testing.T) {
-		d := New()
-		d.Add(1)
-
-		assertEqual(t, d.Add(1), false)
-	})
-}
-
 func TestFind(t *testing.T) {
 	t.Run("Finding a non existing element", func(t *testing.T) {
 		d := New()
@@ -116,12 +101,10 @@ func BenchmarkContains(b *testing.B) {
 func BenchmarkAdd(b *testing.B) {
 	rand.Seed(42)
 	d := New()
-	var r bool
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
-		r = d.Add(rand.Intn(100000))
+		d.Add(rand.Intn(100000))
 	}
-	result = r
 }
 
 func BenchmarkUnion(b *testing.B) {
