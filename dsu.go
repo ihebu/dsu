@@ -44,7 +44,7 @@ func (d *DSU) Add(x interface{}) {
 }
 
 // Find returns the root element that represents the set to which x belongs to.
-// If the element doesn't exist in the set, Find returns the nil value.
+// If the element does not exist in the data structure, it returns the nil value.
 func (d *DSU) Find(x interface{}) interface{} {
 	if !d.Contains(x) {
 		return nil
