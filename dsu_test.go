@@ -15,11 +15,9 @@ func assertEqual(t *testing.T, got, expected interface{}) {
 
 func TestContains(t *testing.T) {
 	d := New()
-	node1 := &node{value: 1, parent: nil, size: 1}
-	node2 := &node{value: "foo", parent: nil, size: 1}
 
-	d.nodes[1] = node1
-	d.nodes["foo"] = node2
+	d.Add(1)
+	d.Add("foo")
 
 	assertEqual(t, d.Contains(1), true)
 	assertEqual(t, d.Contains("foo"), true)
