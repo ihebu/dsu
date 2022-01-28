@@ -51,18 +51,17 @@ func (d *DSU) Find(x interface{}) interface{} {
 	}
 
 	node := d.nodes[x]
+	root := node
 
-	if node.parent == nil {
-		return x
+	for root.parent != nil {
+		root = root.parent
 	}
 
-	d.Find(node.parent.value)
-
-	if node.parent.parent != nil {
-		node.parent = node.parent.parent
+	for node.parent != nil {
+		node.parent, node = root, node.parent
 	}
 
-	return node.parent.value
+	return root.value
 }
 
 // Union replaces the set containing x and the set containing y with their union.
