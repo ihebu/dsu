@@ -64,32 +64,29 @@ func (d *DSU) Find(x interface{}) interface{} {
 	return root.value
 }
 
-// Union replaces the set containing x and the set containing y with their union.
-// Union uses Find to determine the roots of the trees containing x and y.
-// If the roots are the same or one of the elements doesn't exist in the set,
-// there is nothing more to do. and Union returns false
-// Otherwise, the two sets get be merged. This is done by either setting
-// the parent element of the element with the smaller size to the other parent
-// and the return of the function in this case is true
+// Union replaces the set containing x and the set containing y with their union. It first determines the roots of the sets containing x and y.
+// If the roots are the same or one of the elements does not exist in the data structure, there is nothing more to do. Otherwise, the two sets get be merged.
+//
+// The root of the new set is the root of the set with bigger size. In case both sets have the same size, the root is the root of set y.
+//
+// It returns true if the merge happened
 func (d *DSU) Union(x, y interface{}) bool {
-	if !d.Contains(x) || !d.Contains(y) {
+	rootx := d.Find(x)
+	rooty := d.Find(y)
+
+	if rootx == nil || rooty == nil || rootx == rooty {
 		return false
 	}
 
-	if d.Find(x) == d.Find(y) {
-		return false
+	nodex := d.nodes[rootx]
+	nodey := d.nodes[rooty]
+
+	if nodex.size <= nodey.size {
+		nodex, nodey = nodey, nodex
 	}
 
-	nodex := d.nodes[d.Find(x)]
-	nodey := d.nodes[d.Find(y)]
-
-	if nodex.size > nodey.size {
-		nodey.parent = nodex
-		nodex.size += nodey.size
-	} else {
-		nodex.parent = nodey
-		nodey.size += nodex.size
-	}
+	nodey.parent = nodex
+	nodex.size += nodey.size
 
 	return true
 }
